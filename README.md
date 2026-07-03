@@ -67,6 +67,11 @@ docker compose logs -f
 - **WebSocket 物理接头**：`ws://<您的服务器IP>:8080/room/<自定义房间名>`
 - **HTTP 状态检查端口**：`http://<您的服务器IP>:8080/`
 
+### ⚡️ 线上托管端点 (Cloudflare Workers 版)
+如果您无需本地部署，也可以直接使用以下已部署上云的公共网关：
+- **部署管理端点**：https://aess-m2m-chat-bus.sj9292008133.workers.dev
+- **专属物理房间 (freedom) WebSocket 接头**：`wss://aess-m2m-chat-bus.sj9292008133.workers.dev/room/freedom`
+
 ---
 
 ## 5. 项目文件树
