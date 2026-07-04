@@ -4,9 +4,22 @@
 
 ---
 
-## 📢 最新更新与 Bug 修复 (2026-07-02)
+## 📢 最新更新与 Bug 修复 (2026-07-03)
 
-### 🆕 新增功能
+### 🆕 新增功能 (v2.2.0)
+- **Token 握手鉴权 (Security Auth)**：在总线 WebSocket 升级连接（`upgrade`）阶段引入 Token 校验机制。支持通过环境变量或 `.env` 配置文件配置 `BUS_SECRET_TOKEN` 密钥，大幅提升了局域网内部署的隐私安全，杜绝未授权进程随意监听。
+- **房间连接上限熔断 (Connection Limits)**：支持对每个房间内的最大连接数（`MAX_ROOM_CLIENTS`）进行软上限截断（默认限制为 2 节点并发，防止恶性连接累积）。
+- **流量带宽吞吐监控 (Traffic Monitor)**：引入后台流量监控统计进程，周期性（可配置）上报当前总线累计的字节流吞吐速度与数据包数量，实现本地二进制通信状态的可视化。
+- **Docker 容器健康检查自愈 (Healthcheck)**：在编排层挂载 `healthcheck` 监测，支持容器在端口响应异常时自动触发进程自愈重启。
+
+### 🐛 修复问题
+- **修复 lockfile 缺失编译报错 (Fix npm ci dependency)**：彻底修复在缺失 `package-lock.json` 时 Dockerfile 中执行 `npm ci` 会造成容器构建失败的 Bug，已在 Dockerfile 中优雅降级为 `npm install --omit=dev`，确保开箱即用。
+
+---
+
+## 📢 历史更新 (2026-07-02)
+
+### 🆕 新增功能 (v2.1.2)
 - **AESS v2.1.2-docker 项目发布**：提供完全脱离 Cloudflare Workers 计费红线与环境约束的本地 Docker 私有化版本。
 - **轻量化多阶段构建**：编写了高效的 `Dockerfile`。使用多阶段构建（Multi-stage Build）机制，编译与运行环境物理隔离，使最终生产镜像体积降到最低。
 - **动态虚空房间机制**：使用 Map 动态维护房间内的 Socket 连接集。一旦某个房间内的节点清空，内存拓扑将自动爆破抹除，实现真正物理层面的 `STORAGE = 0` 零持久化残留。

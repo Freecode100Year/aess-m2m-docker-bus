@@ -1,6 +1,6 @@
 {
   "name": "aess-m2m-docker-bus",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "AESS M2M Ephemeral Binary Chat Bus - Docker Edition",
   "main": "dist/index.js",
   "scripts": {
